@@ -1,0 +1,69 @@
+version: 2
+
+models:
+  - name: user_activity
+
+    description: >
+     ddd
+
+    tests:
+      - unique:
+          column_name: "actors_id || events_id || commits_hash" 
+
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - actors_id
+            - events_id
+          config:
+            where: events_type != 'PushEvent'
+
+    columns:
+      - name: actors_id
+        description: >
+         ddd
+        tests:
+          - not_null
+
+      - name: actors_username
+        description: >
+         ddd
+        tests:
+          - not_null
+
+      - name: events_id
+        description: >
+         ddd
+        tests:
+          - not_null
+
+      - name: events_type
+        description: >
+         ddd
+        tests:
+          - not_null
+
+      - name: is_pullrequest
+        description: >
+         ddd
+        tests:
+          - not_null
+
+      - name: is_commit
+        description: >
+         ddd
+        tests:
+          - not_null
+
+      - name: is_watch
+        description: >
+         ddd
+        tests:
+          - not_null
+
+      - name: commits_message
+        description: >
+         ddd
+
+      - name: commits_hash
+        description: >
+         ddd
