@@ -13,5 +13,14 @@ with
         from events
     )
 
+    , flag_creation as (
+        select
+            *
+            , events_type = 'PullRequestEvent' as is_pullrequest
+            , events_type = 'CommitCommentEvent' as is_commit
+            , events_type = 'WatchEvent' as is_watch 
+        from casting_and_renaming
+    )
+
 select *
-from casting_and_renaming
+from flag_creation
