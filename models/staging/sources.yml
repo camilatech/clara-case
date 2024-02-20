@@ -6,62 +6,73 @@ sources:
     tables:
       - name: actors
         description: >
-          One record per order. Includes cancelled and deleted orders.
+          Table that describes the actors and its username. It is originally duplicated and
+          comes from a csv file.
 
         columns:
           - name: id
-            description: Primary key of the orders table
+            description: >
+              Id of a actor.
             tests:
               - not_null
 
           - name: username
-            description: Primary key of the orders table
+            description: >
+              Username of a actor.
             tests:
               - not_null
 
       - name: repos
         description: >
-          One record per order. Includes cancelled and deleted orders.
+          Table that describes the repo and its name. It is originally duplicated and
+          comes from a csv file.
              
         columns:
           - name: id
-            description: Primary key of the orders table
+            description: >
+              Repository id.
             tests:
               - not_null
 
           - name: name
-            description: Primary key of the orders table
+            description: >
+              Repository name.
             tests:
               - not_null
               
       - name: events
         description: >
-          One record per order. Includes cancelled and deleted orders.
+          Table that describes the events and it's the join between the actor and repos table.
+          It comes from a csv file and its primary key is id.
         columns:
           - name: id
-            description: Primary key of the orders table
+            description: >
+              Id of the event.
             tests:
               - unique
               - not_null
 
           - name: type
-            description: Primary key of the orders table
+            description: >
+              Type of the event.
             tests:
               - not_null
 
           - name: actor_id
-            description: Primary key of the orders table
+            description: >
+              Id of a actor.
             tests:
               - not_null
 
           - name: repo_id
-            description: Primary key of the orders table
+            description: >
+              Id of a repository.
             tests:
               - not_null
 
       - name: commits
         description: >
-          One record per order. Includes cancelled and deleted orders.
+          This tables shows all commits and its messages. It comes from a csv file.
 
         tests:
           - unique:
@@ -69,14 +80,17 @@ sources:
 
         columns:
           - name: sha
-            description: Primary key of the orders table
+            description: >
+              Commit sh key.
             tests:
               - not_null
 
           - name: message
-            description: Primary key of the orders table
+            description: >
+              Commit message.
               
           - name: event_id
-            description: Primary key of the orders table
+            description: >
+              Id of the event.
             tests:
               - not_null
