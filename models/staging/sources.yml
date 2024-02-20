@@ -7,6 +7,7 @@ sources:
       - name: actors
         description: >
           One record per order. Includes cancelled and deleted orders.
+
         columns:
           - name: id
             description: Primary key of the orders table
@@ -21,6 +22,7 @@ sources:
       - name: repos
         description: >
           One record per order. Includes cancelled and deleted orders.
+             
         columns:
           - name: id
             description: Primary key of the orders table
@@ -60,6 +62,11 @@ sources:
       - name: commits
         description: >
           One record per order. Includes cancelled and deleted orders.
+
+        tests:
+          - unique:
+              column_name: "sha || event_id" 
+
         columns:
           - name: sha
             description: Primary key of the orders table
