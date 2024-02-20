@@ -1,10 +1,75 @@
 version: 2
 
 sources:
-  - name: jaffle_shop
-    database: raw  
-    schema: jaffle_shop  
+  - name: bronze
+    schema: bronze  
     tables:
-      - name: orders
-      - name: customers
+      - name: actors
+        description: >
+          One record per order. Includes cancelled and deleted orders.
+        columns:
+          - name: id
+            description: Primary key of the orders table
+            tests:
+              - not_null
 
+          - name: username
+            description: Primary key of the orders table
+            tests:
+              - not_null
+
+      - name: repos
+        description: >
+          One record per order. Includes cancelled and deleted orders.
+        columns:
+          - name: id
+            description: Primary key of the orders table
+            tests:
+              - not_null
+
+          - name: name
+            description: Primary key of the orders table
+            tests:
+              - not_null
+              
+      - name: events
+        description: >
+          One record per order. Includes cancelled and deleted orders.
+        columns:
+          - name: id
+            description: Primary key of the orders table
+            tests:
+              - unique
+              - not_null
+
+          - name: type
+            description: Primary key of the orders table
+            tests:
+              - not_null
+
+          - name: actor_id
+            description: Primary key of the orders table
+            tests:
+              - not_null
+
+          - name: repo_id
+            description: Primary key of the orders table
+            tests:
+              - not_null
+
+      - name: commits
+        description: >
+          One record per order. Includes cancelled and deleted orders.
+        columns:
+          - name: sha
+            description: Primary key of the orders table
+            tests:
+              - not_null
+
+          - name: message
+            description: Primary key of the orders table
+              
+          - name: event_id
+            description: Primary key of the orders table
+            tests:
+              - not_null
