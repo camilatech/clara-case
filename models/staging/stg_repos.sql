@@ -6,7 +6,7 @@ with
 
     , casting as (
         select
-            cast(id as string) as id
+            cast(id as string) as repo_id
             , cast(name as string) as repos_name
         from repos
     )

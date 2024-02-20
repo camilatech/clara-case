@@ -56,6 +56,20 @@ sources:
             description: Primary key of the orders table
             tests:
               - not_null
-              
-              
 
+      - name: commits
+        description: >
+          One record per order. Includes cancelled and deleted orders.
+        columns:
+          - name: sha
+            description: Primary key of the orders table
+            tests:
+              - not_null
+
+          - name: message
+            description: Primary key of the orders table
+              
+          - name: event_id
+            description: Primary key of the orders table
+            tests:
+              - not_null

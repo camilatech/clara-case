@@ -6,7 +6,7 @@ with
 
     , casting_and_renaming as (
         select
-            cast(id as string) as id
+            cast(id as string) as actors_id
             , cast(username as string) as actors_username
         from actors
     )
