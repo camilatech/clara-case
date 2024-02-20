@@ -25,8 +25,10 @@ models:
     # Config indicated by + and applies to all files under models/marts/
     marts:
       +materialized: table
-    stagging:
+      +schema: gold
+    staging:
       # The config bellow is used to not created the tables in production, however
-      # create in development. This is used because the stagging will be only used
+      # create in development. This is used because the staging will be only used
       # in few models and will be the replica of the raw with mininal changes. 
-      +materialized: "{{ 'ephemeral' if target.name=='prod' else 'table' }}"
+      +materialized: view
+      +schema: silver
