@@ -1,27 +1,11 @@
-edenred_serv_dbt:
+clara_case:
+
   target: "{{ env_var('DEFAULT_TARGET') }}"
   outputs:
-
     dev:
-      type: databricks
-      schema: "{{ env_var('DEV_SCHEMA') }}"
-      host: "{{ env_var('DEV_HOST') }}"
-      http_path: "{{ env_var('DEV_HTTP_PATH') }}"
-      token: "{{ env_var('DEV_TOKEN') }}"
-      threads: 16
-
-    ci:
-      type: databricks
-      schema: "{{ env_var('CI_SCHEMA') }}"
-      host: "{{ env_var('CI_HOST') }}"
-      http_path: "{{ env_var('CI_HTTP_PATH') }}"
-      token: "{{ env_var('CI_TOKEN') }}"
-      threads: 16
-
-    prod:
-      type: databricks
-      schema: "{{ env_var('PROD_SCHEMA') }}"
-      host: "{{ env_var('PROD_HOST') }}"
-      http_path: "{{ env_var('PROD_HTTP_PATH') }}"
-      token: "{{ env_var('DBT_ACCESS_TOKEN') }}"
-      threads: 16
+        type: bigquery
+        method: service-account
+        project: clara-case
+        dataset: bronze
+        threads: 4 # Must be a value of 1 or greater
+        keyfile: "{{ env_var('DEV_KEYFILE') }}"
