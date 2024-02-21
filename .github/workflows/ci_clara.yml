@@ -1,9 +1,8 @@
 name: CI Package
 on:
-  pull_request_target:
+  push:
     branches:
-      - main
-      - develop
+      - feature/documentations_cicd
   workflow_dispatch: null
 env:
   CI_DATASET: ci_schema
