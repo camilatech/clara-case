@@ -7,8 +7,7 @@ on:
   workflow_dispatch: null
 env:
   CI_DATASET: ci_schema
-  CI_KEYFILE: /home/runner/work/${{ github.event.repository.name }}/${{
-    github.event.repository.name }}/.clara_case.json
+  CI_KEYFILE: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/.clara_case.json
   CI_SERVICE_ACCOUNT: ${{ secrets.CI_SERVICE_ACCOUNT }}
   DBT_PROFILES_DIR: ./
 jobs:
