@@ -1,0 +1,96 @@
+version: 2
+
+sources:
+  - name: bronze
+    schema: bronze  
+    tables:
+      - name: actors
+        description: >
+          Table that describes the actors and its username. It is originally duplicated and
+          comes from a csv file.
+
+        columns:
+          - name: id
+            description: >
+              Id of a actor.
+            tests:
+              - not_null
+
+          - name: username
+            description: >
+              Username of a actor.
+            tests:
+              - not_null
+
+      - name: repos
+        description: >
+          Table that describes the repo and its name. It is originally duplicated and
+          comes from a csv file.
+             
+        columns:
+          - name: id
+            description: >
+              Repository id.
+            tests:
+              - not_null
+
+          - name: name
+            description: >
+              Repository name.
+            tests:
+              - not_null
+              
+      - name: events
+        description: >
+          Table that describes the events and it's the join between the actor and repos table.
+          It comes from a csv file and its primary key is id.
+        columns:
+          - name: id
+            description: >
+              Id of the event.
+            tests:
+              - unique
+              - not_null
+
+          - name: type
+            description: >
+              Type of the event.
+            tests:
+              - not_null
+
+          - name: actor_id
+            description: >
+              Id of a actor.
+            tests:
+              - not_null
+
+          - name: repo_id
+            description: >
+              Id of a repository.
+            tests:
+              - not_null
+
+      - name: commits
+        description: >
+          This tables shows all commits and its messages. It comes from a csv file.
+
+        tests:
+          - unique:
+              column_name: "sha || event_id" 
+
+        columns:
+          - name: sha
+            description: >
+              Commit sh key.
+            tests:
+              - not_null
+
+          - name: message
+            description: >
+              Commit message.
+              
+          - name: event_id
+            description: >
+              Id of the event.
+            tests:
+              - not_null
