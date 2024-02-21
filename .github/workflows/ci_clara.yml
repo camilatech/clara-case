@@ -1,0 +1,43 @@
+name: CI Package
+
+on:
+  pull_request_target:
+    branches:    
+      - main
+      - develop
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  # These are configured in GitHub secrets
+  CI_DATASET: ci_schema
+  CI_KEYFILE: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/.clara_case.json
+  CI_SERVICE_ACCOUNT: ${{ secrets.CI_SERVICE_ACCOUNT }}
+  DBT_PROFILES_DIR: "./"
+
+jobs:
+  {# sqlfluff-lint-models:
+    name: Lint dbt models using SQLFluff
+    runs-on: ubuntu-latest
+    environment:
+      name: Approve Integration Tests #}
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }} # Check out the code of the PR
+
+      - name: Install Python packages
+        run: python -m pip install -r requirements.txt
+      
+      - name: dbt commands
+        run: | 
+          - echo $CI_SERVICE_ACCOUNT | base64 -d > $CI_KEYFILE
+      # Test database connection
+          - dbt debug
+      # Install dbt packages
+          - dbt deps
+      # Run and test all the dbt models
+          - dbt build --target ci
