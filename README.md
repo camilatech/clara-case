@@ -10,10 +10,12 @@ The project leverages dbt for efficient transformation and modeling of raw data,
 1. **Source Data Analysis**: Initially, we delve into the structure and content of the `Events`, `Actors`, `Commits`, and `Repos` datasets.
 2. **Creation of Staging Tables**: These tables are designed to standardize and cleanse the data, aiding in preliminary analysis and data discovery.
 3. **Core Tables Design**: Given the business-centric nature of this analysis, a one-big-table approach was chosen over a star-schema. This decision is context-dependent and might differ in real-world applications. The data is segmented into two primary tables: `repo_activity` and `user_activity`, focusing on repository and user-centric activities, respectively.
-4. **Final Report Tables**: Models for the final reports are crafted to spotlight the top 10 active users, repositories by commits, and repositories by watch events. While such metrics are typically derived through visualization tools like Power BI, they are included in this project as models and CSV outputs for comprehensive demonstration purposes.
+4. **Final Report Tables**: Models for the final reports are crafted to spotlight the top 10 active users, repositories by commits, and repositories by watch events. While such metrics are typically derived through visualization tools like Power BI, they are included in this project as models and [CSV outputs](./report_indicators) for comprehensive demonstration purposes.
 
 ### Diagrams
-[Include diagrams of your data model here]
+
+![](assets/clara_data_lineage.jpg)
+![](assets/clara-case.drawio.jpg)
 
 ## DBT Testing
 - Basic tests include checking for null values, unique constraints, and referential integrity.
