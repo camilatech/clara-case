@@ -19,3 +19,12 @@ clara_case:
         threads: 4 # Must be a value of 1 or greater
         keyfile: "{{ env_var('PROD_KEYFILE') }}"
         location: us-central1
+
+    ci:
+        type: bigquery
+        method: service-account
+        project: clara-case
+        dataset: "{{ env_var('CI_DATASET') }}"
+        threads: 4 # Must be a value of 1 or greater
+        keyfile: "{{ env_var('CI_KEYFILE') }}"
+        location: us-central1
