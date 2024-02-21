@@ -5,6 +5,7 @@ on:
       - feature/documentations_cicd
   workflow_dispatch: null
 env:
+  DEFAULT_TARGET: ci
   CI_DATASET: ci_schema
   CI_KEYFILE: /home/runner/work/${{ github.event.repository.name }}/${{
     github.event.repository.name }}/.clara_case.json
