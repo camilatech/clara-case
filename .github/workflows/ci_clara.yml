@@ -22,9 +22,6 @@ jobs:
     - name: dbt commands
       run: |
         echo $CI_SERVICE_ACCOUNT | base64 -d > $CI_KEYFILE
-        # Test database connection
         dbt debug
-        # Install dbt packages
         dbt deps
-        # Run and test all the dbt models
         dbt build --target ci
