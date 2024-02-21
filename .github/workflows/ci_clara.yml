@@ -7,21 +7,23 @@ on:
   workflow_dispatch: null
 env:
   CI_DATASET: ci_schema
-  CI_KEYFILE: "/home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/.clara_case.json"
+  CI_KEYFILE: /home/runner/work/${{ github.event.repository.name }}/${{
+    github.event.repository.name }}/.clara_case.json
   CI_SERVICE_ACCOUNT: ${{ secrets.CI_SERVICE_ACCOUNT }}
   DBT_PROFILES_DIR: ./
-
 jobs:
-  steps:
-    - name: Checkout branch
-      uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
-    - name: Install Python packages
-      run: python -m pip install -r requirements.txt
-    - name: dbt commands
-      run: |
-        echo $CI_SERVICE_ACCOUNT | base64 -d > $CI_KEYFILE
-        dbt debug
-        dbt deps
-        dbt build --target ci
+  dbt-jobs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Install Python packages
+        run: python -m pip install -r requirements.txt
+      - name: dbt commands
+        run: |
+          echo $CI_SERVICE_ACCOUNT | base64 -d > $CI_KEYFILE
+          dbt debug
+          dbt deps
+          dbt build --target ci
