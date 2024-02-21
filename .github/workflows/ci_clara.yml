@@ -1,8 +1,9 @@
 name: CI Package
 on:
-  push:
+  pull_request:
     branches:
-      - feature/documentations_cicd
+      - develop
+      - main
   workflow_dispatch: null
 env:
   DEFAULT_TARGET: ci
