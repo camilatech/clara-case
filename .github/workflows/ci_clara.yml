@@ -17,11 +17,11 @@ env:
   DBT_PROFILES_DIR: "./"
 
 jobs:
-  {# sqlfluff-lint-models:
-    name: Lint dbt models using SQLFluff
-    runs-on: ubuntu-latest
-    environment:
-      name: Approve Integration Tests #}
+  #sqlfluff-lint-models:
+    #name: Lint dbt models using SQLFluff
+    #runs-on: ubuntu-latest
+    #environment:
+    #  name: Approve Integration Tests #}
 
     steps:
       - name: Checkout branch
