@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: top_users
+
+    description: >
+     This table is used only to show how to withdraw the information from the data.
+     This step would not be done ina dbt model as it is a simple operation that can be done
+     in a visualization software (such as Power BI).
+     It aggregare the top 10 repositories sorted by amount of commits pushed.
+
+    columns:
+      - name: actors_id
+        description: >
+         Id of a actor.
+        tests:
+          - not_null
+          - unique
+
+      - name: actors_username
+        description: >
+         Username of a actor.
+        tests:
+          - not_null
+
+      - name: top_users
+        description: >
+         Id of the event.
+        tests:
+          - not_null

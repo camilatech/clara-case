@@ -43,7 +43,7 @@ with
             , stg_events.is_commit
             , stg_events.is_watch
             , stg_commits.commits_message
-            , stg_commits.commits_hash
+            , stg_commits.commits_sh_key
         from deduping_actor
         left join stg_events
         on deduping_actor.actors_id = stg_events.actors_id

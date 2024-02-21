@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: top_repos_commits
+    description: >
+     This table is used only to show how to withdraw the information from the data.
+     This step would not be done ina dbt model as it is a simple operation that can be done
+     in a visualization software (such as Power BI).
+     It aggregare the top 10 active users sorted by amount of PRs created and commits pushed.
+
+    columns:
+      - name: repos_id
+        description: >
+         Repository id.
+        tests:
+          - not_null
+          - unique
+
+      - name: repos_name
+        description: >
+         Repository name.
+        tests:
+          - not_null
+
+      - name: top_repo_commits
+        description: >
+         Id of the event.
+        tests:
+          - not_null

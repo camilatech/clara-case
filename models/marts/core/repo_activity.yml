@@ -3,11 +3,11 @@ version: 2
 models:
   - name: repo_activity
     description: >
-     ddd
+     Here we create one big table with a focus in repos. It has the data from events and commits.
 
     tests:
       - unique:
-          column_name: "repos_id || events_id || commits_hash" 
+          column_name: "repos_id || events_id || commits_sh_key" 
 
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
@@ -19,50 +19,50 @@ models:
     columns:
       - name: repos_id
         description: >
-         ddd
+         Repository id.
         tests:
           - not_null
 
       - name: repos_name
         description: >
-         ddd
+         Repository name.
         tests:
           - not_null
 
       - name: events_id
         description: >
-         ddd
+         Id of the event.
         tests:
           - not_null
 
       - name: events_type
         description: >
-         ddd
+         Type of the event.
         tests:
           - not_null
 
       - name: is_pullrequest
         description: >
-         ddd
+         Flag if the event is a Pull Request then True, else False.
         tests:
           - not_null
 
       - name: is_commit
         description: >
-         ddd
+         Flag if the event is a Commit then True, else False.
         tests:
           - not_null
 
       - name: is_watch
         description: >
-         ddd
+         Flag if the event is a Watch event then True, else False.
         tests:
           - not_null
 
       - name: commits_message
         description: >
-         ddd
+         Commit message.
 
-      - name: commits_hash
+      - name: commits_sh_key
         description: >
-         ddd
+         Commit sh key.
