@@ -10,10 +10,12 @@ The project leverages dbt for efficient transformation and modeling of raw data,
 1. **Source Data Analysis**: Initially, we delve into the structure and content of the `Events`, `Actors`, `Commits`, and `Repos` datasets.
 2. **Creation of Staging Tables**: These tables are designed to standardize and cleanse the data, aiding in preliminary analysis and data discovery.
 3. **Core Tables Design**: Given the business-centric nature of this analysis, a one-big-table approach was chosen over a star-schema. This decision is context-dependent and might differ in real-world applications. The data is segmented into two primary tables: `repo_activity` and `user_activity`, focusing on repository and user-centric activities, respectively.
-4. **Final Report Tables**: Models for the final reports are crafted to spotlight the top 10 active users, repositories by commits, and repositories by watch events. While such metrics are typically derived through visualization tools like Power BI, they are included in this project as models and CSV outputs for comprehensive demonstration purposes.
+4. **Final Report Tables**: Models for the final reports are crafted to spotlight the top 10 active users, repositories by commits, and repositories by watch events. While such metrics are typically derived through visualization tools like Power BI, they are included in this project as models and [CSV outputs](./report_indicators) for comprehensive demonstration purposes.
 
 ### Diagrams
-[Include diagrams of your data model here]
+
+![](assets/clara_data_lineage.jpg)
+![](assets/clara-case.drawio.jpg)
 
 ## DBT Testing
 - Basic tests include checking for null values, unique constraints, and referential integrity.
@@ -106,9 +108,44 @@ By following these steps, you will set up your dbt environment and prepare it fo
 4. **Testing**: Write and run tests for your models using dbt.
 5. **Committing**: Commit your changes with clear, descriptive messages.
 6. **Pull Request**: Once the feature is ready and tested, create a pull request against the main branch.
-7. **Code Review**: Have your code reviewed by a peer or a supervisor.
+7. **Code Review**: Have your code reviewed by a peer or a supervisor and make sure your pull request passed in the CI process.
 8. **Merge**: After approval, merge the feature branch into the main branch.
 
+## Continuous Integration (CI) Process
+
+Our dbt project integrates a Continuous Integration (CI) pipeline, which automatically tests code against an isolated schema before merging into the main branch. This ensures high quality and consistent updates.
+
+### CI Pipeline Steps
+1. **Schema Isolation**: Unique schema to test the CI to avoid conflicts.
+2. **Execution of dbt Commands**: Includes `dbt deps`, `dbt build`, and `dbt test` for complete model and test execution.
+3. **Data Quality Tests**: Validates data integrity against business requirements.
+4. **Reporting**: Detailed report on each pipeline step, highlighting issues if any.
+
+### Merging to Main
+- **Review and Approval**: Pull request review is mandatory post successful CI pipeline execution.
+- **Merge Conditions**: Success in CI checks and peer/supervisor approval.
+- **Final Merge**: After all conditions are met, merging into the main branch is allowed.
+
+This CI process is essential for maintaining the integrity and quality of our dbt project, ensuring robust and reliable updates.
+
+## Further Improvements
+
+While our current dbt project is robust in its simplicity and functionality, there are potential enhancements that could be implemented with more time. As the project grows in complexity, these additions would further refine and strengthen our process.
+
+### Potential Additions
+1. **Slim CI**: 
+   - **Purpose**: To optimize CI execution time and resource utilization.
+   - **Why Not Now**: Our current models are straightforward, and the full CI pipeline runs efficiently. However, as the project scales and the number of models increases, Slim CI could significantly reduce integration times.
+
+2. **SQLFluff**:
+   - **Purpose**: For stricter code style enforcement and consistency.
+   - **Why Not Now**: The current codebase maintains a clean and consistent style. While SQLFluff would bring additional rigor to style enforcement, it adds complexity that is not yet necessary for the simplicity of our models.
+
+3. **dbt Great Expectations**:
+   - **Purpose**: To implement more sophisticated data tests and validations.
+   - **Why Not Now**: The present data testing within our CI pipeline suffices for our current requirements. Great Expectations would offer more advanced testing capabilities, but it's more beneficial for larger, more complex datasets and transformations.
+
+These enhancements, while not immediately necessary due to the simplicity and current scale of our project, would be valuable as the project evolves. Incorporating these steps would ensure continued high quality and efficiency as the project grows in size and complexity.
 
 ## Additional Information
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
